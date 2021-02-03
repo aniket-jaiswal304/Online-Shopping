@@ -1,0 +1,6 @@
+# Default ignored files
+/OnlineShopping.iws
+
+# Project exclude paths
+/target/
+/target/classes/
