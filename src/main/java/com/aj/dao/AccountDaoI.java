@@ -4,5 +4,5 @@ import com.aj.entity.Account;
 
 public interface AccountDaoI
 {
-    public Account findAccount(String username);
+    Account findAccount(String username);
 }

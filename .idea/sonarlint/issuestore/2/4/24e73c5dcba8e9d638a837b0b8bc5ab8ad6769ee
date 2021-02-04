@@ -1,0 +1,12 @@
+
+|
+java:S1488f"fImmediately return this expression instead of assigning it to the temporary variable "sessionFactory".(£öÑê
+M
+java:S3878a"8Remove this array creation and simply pass the elements.(∞µÚ!
+X	java:S125y"<This block of commented-out lines of code should be removed.(œ£§Ä8ÔÕÉ√ˆ.
+í
+java:S1488v"pImmediately return this expression instead of assigning it to the temporary variable "commonsMultipartResolver".(®€ì˝˛ˇˇˇˇ8ÔÕÉ√ˆ.
+å
+java:S1488n"jImmediately return this expression instead of assigning it to the temporary variable "transactionManager".(«…Îı˙ˇˇˇˇ8ÔÕÉ√ˆ.
+T
+java:S38781"8Remove this array creation and simply pass the elements.(å˚Ìl8à¨É√ˆ.

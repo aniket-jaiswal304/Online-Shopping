@@ -44,8 +44,6 @@ public class WebConfig implements WebMvcConfigurer
     @Bean
     public ResourceBundleMessageSource messageSource() {
         ResourceBundleMessageSource rb = new ResourceBundleMessageSource();
-        // Load property in message
-        // validator.properties
         rb.setBasenames(new String[] { "messages/validator" });
         return rb;
     }
@@ -90,11 +88,12 @@ public class WebConfig implements WebMvcConfigurer
         properties.put("hibernate.dialect", environment.getProperty("hibernate.dialect"));
         properties.put("hibernate.show_sql", environment.getProperty("hibernate.show_sql"));
         properties.put("current_session_context_class", environment.getProperty("current_session_context_class"));
-        properties.setProperty("hibernate.hbm2ddl.auto", "hibernate.hbm2ddl.auto");
+        properties.setProperty("hibernate.hbm2ddl.auto", environment.getProperty("hibernate.hbm2ddl.auto"));
 
         LocalSessionFactoryBean factoryBean = new LocalSessionFactoryBean();
 
         factoryBean.setPackagesToScan(new String[]{"com.aj.entity"});
+//        factoryBean.setAnnotatedClasses(UserDetailsService.class);
         factoryBean.setDataSource(dataSource);
         factoryBean.setHibernateProperties(properties);
         factoryBean.afterPropertiesSet();

@@ -18,33 +18,38 @@ import java.util.List;
 public class MyDBAuthenticationService implements UserDetailsService
 {
     @Autowired
-    private AccountDaoI accountdao;
+    private AccountDaoI accountDao;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException
     {
-        System.out.println(username + "1");
-        Account account = accountdao.findAccount(username);
+        Account account = accountDao.findAccount(username);
+        System.out.println("Account= " + account);
 
-        if(account == null)
-        {
-            throw new UsernameNotFoundException("User " + username + " was not found in the database");
+        if (account == null) {
+            throw new UsernameNotFoundException("User " //
+                    + username + " was not found in the database");
         }
 
+        // EMPLOYEE,MANAGER,..
         String role = account.getUserRole();
 
-        List<GrantedAuthority> grantedAuthorities = new ArrayList<GrantedAuthority>();
+        List<GrantedAuthority> grantList = new ArrayList<GrantedAuthority>();
 
-        GrantedAuthority grantedAuthority = new SimpleGrantedAuthority("ROLE_" + role);
+        // ROLE_EMPLOYEE, ROLE_MANAGER
+        GrantedAuthority authority = new SimpleGrantedAuthority("ROLE_" + role);
 
-        grantedAuthorities.add(grantedAuthority);
+        grantList.add(authority);
 
         boolean enabled = account.isActive();
         boolean accountNonExpired = true;
         boolean credentialsNonExpired = true;
         boolean accountNonLocked = true;
 
-        UserDetails userDetails = (UserDetails) new User(account.getUserName(), account.getPassword(), enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, grantedAuthorities);
+        UserDetails userDetails = (UserDetails) new User(account.getUserName(), //
+                account.getPassword(), enabled, accountNonExpired, //
+                credentialsNonExpired, accountNonLocked, grantList);
+
         return userDetails;
     }
 }

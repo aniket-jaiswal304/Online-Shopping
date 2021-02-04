@@ -724,5 +724,8 @@
       <module filepath="$PROJECT_DIR$/OnlineShopping.iml"/>
     </modules> 
   </component>  
-  <component name="ProjectRootManager" version="2" project-jdk-name="11." assert-keyword="true" jdk-15="true"/> 
+  <component name="ProjectRootManager" version="2" project-jdk-name="11." assert-keyword="true" jdk-15="true"/>  
+  <component name="VcsDirectoryMappings"> 
+    <mapping directory="$PROJECT_DIR$" vcs="Git"/> 
+  </component> 
 </project>
