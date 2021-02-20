@@ -1,12 +1,14 @@
 
-|
-java:S1488f"fImmediately return this expression instead of assigning it to the temporary variable "sessionFactory".(£öÑê
-M
-java:S3878a"8Remove this array creation and simply pass the elements.(∞µÚ!
-X	java:S125y"<This block of commented-out lines of code should be removed.(œ£§Ä8ÔÕÉ√ˆ.
-í
-java:S1488v"pImmediately return this expression instead of assigning it to the temporary variable "commonsMultipartResolver".(®€ì˝˛ˇˇˇˇ8ÔÕÉ√ˆ.
-å
-java:S1488n"jImmediately return this expression instead of assigning it to the temporary variable "transactionManager".(«…Îı˙ˇˇˇˇ8ÔÕÉ√ˆ.
 T
-java:S38781"8Remove this array creation and simply pass the elements.(å˚Ìl8à¨É√ˆ.
+java:S3878_"8Remove this array creation and simply pass the elements.(∞µÚ!8–ØÀ‚ˆ.
+å
+java:S1488m"jImmediately return this expression instead of assigning it to the temporary variable "transactionManager".(«…Îı˙ˇˇˇˇ8ÔÕÉ√ˆ.
+X	java:S125`"<This block of commented-out lines of code should be removed.(∏∑Ïñ8–ØÀ‚ˆ.
+X	java:S125x"<This block of commented-out lines of code should be removed.(œ£§Ä8ÔÕÉ√ˆ.
+í
+java:S1488u"pImmediately return this expression instead of assigning it to the temporary variable "commonsMultipartResolver".(®€ì˝˛ˇˇˇˇ8ÔÕÉ√ˆ.
+É
+java:S1488e"fImmediately return this expression instead of assigning it to the temporary variable "sessionFactory".(£öÑê8–ØÀ‚ˆ.
+T
+java:S3878/"8Remove this array creation and simply pass the elements.(å˚Ìl8à¨É√ˆ.
+]	java:S125'"<This block of commented-out lines of code should be removed.(ûñÛÛ˚ˇˇˇˇ8Ω™√‰ˆ.

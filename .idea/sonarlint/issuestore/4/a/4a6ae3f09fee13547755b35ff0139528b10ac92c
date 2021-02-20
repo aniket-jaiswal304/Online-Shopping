@@ -1,0 +1,10 @@
+
+©
+java:S1130"’Remove the declaration of thrown exception 'org.springframework.security.core.userdetails.UsernameNotFoundException' which is a runtime exception.(£‘Ş½
+…
+java:S14881"cImmediately return this expression instead of assigning it to the temporary variable "userDetails".(àÀÔÖùÿÿÿÿ8ƒĞàö.
+U	java:S106"9Replace this use of System.out or System.err by a logger.(˜´’È8ƒĞàö.
+v
+java:S2293%"YReplace the type specification in this constructor call with the diamond operator ("<>").(ˆ¯ÎÜ8ƒĞàö.
+P
+java:S19051".Remove this unnecessary cast to "UserDetails".(àÀÔÖùÿÿÿÿ8ƒĞàö.

@@ -39,38 +39,37 @@ public class AdminController
     @Autowired
     private ProductInfoValidator productInfoValidator;
 
-    // Configurated In ApplicationContextConfig.
+    // Configured In ApplicationContextConfig.
     @Autowired
     private ResourceBundleMessageSource messageSource;
 
-    public AdminController() {
-    }
-
     @InitBinder
-    public void myInitBinder(WebDataBinder dataBinder) {
+    public void myInitBinder(WebDataBinder dataBinder)
+    {
         Object target = dataBinder.getTarget();
-        if (target == null) {
+        if (target == null)
+        {
             return;
         }
         System.out.println("Target=" + target);
 
-        if (target.getClass() == ProductInfo.class) {
+        if (target.getClass() == ProductInfo.class)
+        {
             dataBinder.setValidator(productInfoValidator);
             // For upload Image.
             dataBinder.registerCustomEditor(byte[].class, new ByteArrayMultipartFileEditor());
         }
     }
 
-    // GET: Show Login Page
-    @RequestMapping(value = { "/login" }, method = RequestMethod.GET)
-    public String login(Model model) {
-
+    @GetMapping("/login")
+    public String login(Model model)
+    {
         return "login";
     }
 
-    @RequestMapping(value = { "/accountInfo" }, method = RequestMethod.GET)
-    public String accountInfo(Model model) {
-
+    @GetMapping("/accountInfo")
+    public String accountInfo(Model model)
+    {
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         System.out.println(userDetails.getPassword());
         System.out.println(userDetails.getUsername());
@@ -80,33 +79,37 @@ public class AdminController
         return "accountInfo";
     }
 
-    @RequestMapping(value = { "/orderList" }, method = RequestMethod.GET)
-    public String orderList(Model model, //
-                            @RequestParam(value = "page", defaultValue = "1") String pageStr) {
+    @GetMapping("/orderList")
+    public String orderList(Model model, @RequestParam(value = "page", defaultValue = "1") String pageStr)
+    {
         int page = 1;
-        try {
+        try
+        {
             page = Integer.parseInt(pageStr);
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
         }
         final int MAX_RESULT = 5;
         final int MAX_NAVIGATION_PAGE = 10;
 
-        PaginationResult<OrderInfo> paginationResult //
-                = orderDao.listOrderInfo(page, MAX_RESULT, MAX_NAVIGATION_PAGE);
+        PaginationResult<OrderInfo> paginationResult = orderDao.listOrderInfo(page, MAX_RESULT, MAX_NAVIGATION_PAGE);
 
         model.addAttribute("paginationResult", paginationResult);
         return "orderList";
     }
 
-    // GET: Show product.
-    @RequestMapping(value = { "/product" }, method = RequestMethod.GET)
-    public String product(Model model, @RequestParam(value = "code", defaultValue = "") String code) {
+    @GetMapping("/product")
+    public String product(Model model, @RequestParam(value = "code", defaultValue = "") String code)
+    {
         ProductInfo productInfo = null;
 
-        if (code != null && code.length() > 0) {
+        if (code != null && code.length() > 0)
+        {
             productInfo = productDao.findProductInfo(code);
         }
-        if (productInfo == null) {
+        if (productInfo == null)
+        {
             productInfo = new ProductInfo();
             productInfo.setNewProduct(true);
         }
@@ -115,44 +118,47 @@ public class AdminController
     }
 
     // POST: Save product
-    @RequestMapping(value = { "/product" }, method = RequestMethod.POST)
+    @PostMapping("/product")
     // Avoid UnexpectedRollbackException (See more explanations)
     @Transactional(propagation = Propagation.NEVER)
-    public String productSave(Model model, //
-                              @ModelAttribute("productForm") @Validated ProductInfo productInfo, //
-                              BindingResult result, //
-                              final RedirectAttributes redirectAttributes) {
-
-        if (result.hasErrors()) {
+    public String productSave(Model model, @ModelAttribute("productForm") @Validated ProductInfo productInfo,
+                              BindingResult result, final RedirectAttributes redirectAttributes)
+    {
+        if (result.hasErrors())
+        {
             return "product";
         }
-        try {
+        try
+        {
             productDao.save(productInfo);
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             // Need: Propagation.NEVER?
             String message = e.getMessage();
             model.addAttribute("message", message);
             // Show product form.
             return "product";
-
         }
         return "redirect:/productList";
     }
 
-    @RequestMapping(value = { "/order" }, method = RequestMethod.GET)
-    public String orderView(Model model, @RequestParam("orderId") String orderId) {
+    @GetMapping("/order")
+    public String orderView(Model model, @RequestParam("orderId") String orderId)
+    {
         OrderInfo orderInfo = null;
-        if (orderId != null) {
+        if (orderId != null)
+        {
             orderInfo = this.orderDao.getOrderInfo(orderId);
         }
-        if (orderInfo == null) {
+        if (orderInfo == null)
+        {
             return "redirect:/orderList";
         }
         List<OrderDetailInfo> details = this.orderDao.listOrderDetailInfos(orderId);
         orderInfo.setDetails(details);
 
         model.addAttribute("orderInfo", orderInfo);
-
         return "order";
     }
 }
